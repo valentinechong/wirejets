@@ -29,8 +29,5 @@ tooling:
     service: appserver
 
 proxy:
-  appserver:
-    - wirejets.lndo.site
-
   node:
     - wirejets.lndo.site:5200
