@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Laravel">
+	<description>
+		Custom PHPCS ruleset based on PSR-2 and Laravel conventions
+	</description>
+    <!-- Specify Folders -->
+	<file>./app</file>
+	<file>./config</file>
+	<file>./database/factories</file>
+	<file>./database/seeders</file>
+	<file>./public</file>
+	<file>./resources</file>
+	<file>./routes</file>
+	<file>./tests</file>
+	<!-- Exclude Folders -->
+	<exclude-pattern>./.docker</exclude-pattern>
+    <exclude-pattern>./.composer</exclude-pattern>
+    <exclude-pattern>./.npm</exclude-pattern>
+	<exclude-pattern>./.git</exclude-pattern>
+	<exclude-pattern>./.infra</exclude-pattern>
+	<exclude-pattern>./.vscode</exclude-pattern>
+	<exclude-pattern>./lang</exclude-pattern>
+	<exclude-pattern>./node_modules</exclude-pattern>
+	<exclude-pattern>./public/vendor</exclude-pattern>
+	<exclude-pattern>./storage</exclude-pattern>
+	<exclude-pattern>./vendor</exclude-pattern>
+
+	<exclude-pattern>./docker/*/*</exclude-pattern>
+	<exclude-pattern>./git/*/*</exclude-pattern>
+	<exclude-pattern>./infra/*/*</exclude-pattern>
+	<exclude-pattern>./vscode/*/*</exclude-pattern>
+	<exclude-pattern>./node_modules/*/*</exclude-pattern>
+	<exclude-pattern>./public/vendor/*/*</exclude-pattern>
+	<exclude-pattern>./storage/*/*</exclude-pattern>
+	<exclude-pattern>./vendor/*/*</exclude-pattern>
+
+	<exclude-pattern>*/Providers/*</exclude-pattern>
+	<exclude-pattern>*/migrations/*</exclude-pattern>
+	<exclude-pattern>*/config/*</exclude-pattern>
+	<exclude-pattern>*/cache/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<!-- Files -->
+	<exclude-pattern>*/.phpstorm.meta.php</exclude-pattern>
+	<exclude-pattern>*/_ide_helper.php</exclude-pattern>
+	<exclude-pattern>*/_ide_helper_models.php</exclude-pattern>
+	<exclude-pattern>*/*.js</exclude-pattern>
+	<exclude-pattern>*/*.css</exclude-pattern>
+	<exclude-pattern>*/*.xml</exclude-pattern>
+	<exclude-pattern>*/*.blade.php</exclude-pattern>
+	<exclude-pattern>*/autoload.php</exclude-pattern>
+	<exclude-pattern>*/public/index.php</exclude-pattern>
+	<exclude-pattern>*/Console/Kernel.php</exclude-pattern>
+	<exclude-pattern>*/Exceptions/Handler.php</exclude-pattern>
+	<exclude-pattern>*/Http/Kernel.php</exclude-pattern>
+
+	<!-- Settings -->
+	<arg name="colors" />
+	<arg value="spv" />
+	<ini name="memory_limit" value="512M" />
+
+    <!-- Generic PHP best practices.
+	https://github.com/WordPress/WordPress-Coding-Standards/pull/382 -->
+	<rule ref="Generic.Classes.DuplicateClassName"/>
+	<rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+	<rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop" />
+	<rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall" />
+	<rule ref="Generic.CodeAnalysis.JumbledIncrementer" />
+	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement" />
+	<rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier" />
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+		<exclude-pattern>
+			/app/Http/Resources/*\.php
+		</exclude-pattern>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+    <rule ref="Generic.Commenting">
+        <exclude name="Generic.Commenting.DocComment.NonParamGroup" />
+        <exclude name="Generic.Commenting.DocComment.TagValueIndent" />
+        <exclude name="Generic.Commenting.DocComment.LongNotCapital" />
+        <exclude name="Generic.Commenting.DocComment.MissingShort" />
+    </rule>
+	<rule ref="Generic.Files.ByteOrderMark" />
+	<rule ref="Generic.Files.LineLength">
+		<exclude name="Generic.Files.LineLength.TooLong" />
+    </rule>
+	<rule ref="Generic.Files.LineEndings">
+		<exclude name="Generic.Files.LineEndings.InvalidEOLChar" />
+	</rule>
+	<rule ref="Generic.Formatting.SpaceAfterCast" />
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing" />
+	<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman" />
+    <rule ref="Generic.Formatting.DisallowMultipleStatements" />
+    <rule ref="Generic.Functions.FunctionCallArgumentSpacing" />
+	<rule ref="Generic.Metrics.CyclomaticComplexity">
+		<properties>
+			<property name="complexity" value="20" />
+			<property name="absoluteComplexity" value="25" />
+		</properties>
+	</rule>
+	<rule ref="Generic.Metrics.NestingLevel">
+		<properties>
+			<property name="nestingLevel" value="5" />
+			<property name="absoluteNestingLevel" value="15" />
+		</properties>
+	</rule>
+	<rule ref="Generic.NamingConventions.ConstructorName" />
+	<rule ref="Generic.PHP.DisallowShortOpenTag" />
+	<rule ref="Generic.PHP.ForbiddenFunctions" />
+	<rule ref="Generic.PHP.LowerCaseConstant" />
+	<rule ref="Generic.PHP.NoSilencedErrors" />
+    <rule ref="Generic.PHP.LowerCaseType" />
+    <rule ref="Generic.PHP.Syntax"/>
+    <rule ref="Generic.Strings.UnnecessaryStringConcat">
+		<properties>
+			<property name="allowMultiline" value="true"/>
+		</properties>
+	</rule>
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<properties>
+			<property name="indent" value="4" />
+			<property name="tabIndent" value="false" />
+            <property name="exact" value="true" />
+            <property name="ignoreIndentationTokens" type="array">
+				<element value="T_HEREDOC"/>
+				<element value="T_NOWDOC"/>
+				<element value="T_INLINE_HTML"/>
+			</property>
+		</properties>
+	</rule>
+
+    <!-- SQUIZ  -->
+	<rule ref="Squiz.Arrays.ArrayDeclaration">
+		<exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.KeyNotAligned" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.ValueNoNewline" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed" />
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.NewlineBeforeOpenBrace" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.NoKeySpecified" />
+		<exclude name="Squiz.Arrays.ArrayDeclaration.KeySpecified" />
+	</rule>
+    <rule ref="Squiz.Commenting">
+        <exclude name="Squiz.Commenting.ClassComment.Missing" />
+        <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed" />
+        <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing" />
+        <exclude name="Squiz.Commenting.FileComment.Missing" />
+        <exclude name="Squiz.Commenting.FunctionComment.Missing" />
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+        <exclude name="Squiz.Commenting.InlineComment.NotCapital" />
+        <exclude name="Squiz.Commenting.InlineComment.SpacingBefore" />
+        <exclude name="Squiz.Commenting.InlineComment.SpacingAfter" />
+        <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
+        <exclude name="Squiz.Commenting.PostStatementComment.Found" />
+        <exclude name="Squiz.Commenting.VariableComment.Missing" />
+        <exclude name="Squiz.Commenting.VariableComment.MissingVar" />
+        <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" />
+        <exclude name="Squiz.Commenting.VariableComment.WrongStyle" />
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentNotCapital" />
+    </rule>
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamName"/>
+        <exclude name="Squiz.Commenting.FunctionComment.MissingReturn"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentAlignmentExceeded"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
+        <exclude name="Squiz.Commenting.FunctionComment.TypeHintMissing"/>
+        <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows"/>
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.ControlStructures">
+        <exclude name="Squiz.ControlStructures.ElseIfDeclaration"/>
+        <exclude name="Squiz.ControlStructures.SwitchDeclaration.BreakIndent"/>
+        <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NoBrackets"/>
+        <exclude name="Squiz.ControlStructures.SwitchDeclaration.MissingDefault"/>
+        <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NotSingleLine" />
+    </rule>
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
+		<properties>
+			<property name="equalsSpacing" value="1" />
+			<property name="requiredSpacesAfterOpen" value="1" />
+			<property name="requiredSpacesBeforeClose" value="1" />
+		</properties>
+	</rule>
+    <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
+    <rule ref="Squiz.Operators.IncrementDecrementUsage"/>
+	<rule ref="Squiz.Operators.ValidLogicalOperators"/>
+    <rule ref="Squiz.PHP">
+        <exclude name="Squiz.PHP.DisallowInlineIf.Found" />
+        <exclude name="Squiz.PHP.DisallowBooleanStatement.Found" />
+        <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedBool" />
+        <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedComparison" />
+    </rule>
+    <rule ref="Squiz.PHP.DisallowMultipleAssignments.Found">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+        <exclude-pattern>./database/factories/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.PHP.Heredoc">
+        <exclude name="Squiz.PHP.Heredoc.NotAllowed"/>
+		<exclude-pattern>*/View/Components/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Scope.MemberVarScope" />
+	<rule ref="Squiz.Scope.MethodScope" />
+	<rule ref="Squiz.Scope.StaticThisUsage" />
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+		<properties>
+			<property name="spacing" value="1" />
+			<property name="ignoreNewlines" value="true" />
+		</properties>
+	</rule>
+    <rule ref="Squiz.WhiteSpace">
+        <exclude name="Squiz.WhiteSpace.MemberVarSpacing.Incorrect" />
+        <exclude name="Squiz.WhiteSpace.MemberVarSpacing.FirstIncorrect" />
+        <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
+        <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.Before" />
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpenBrace" />
+    </rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
+        <severity>5</severity>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+        <properties>
+            <property name="spacing" value="1" />
+            <property name="spacingBeforeFirst" value="0" />
+            <property name="spacingAfterLast" value="0" />
+        </properties>
+    </rule>
+
+    <!-- And yet more best practices.
+		 https://github.com/WordPress/WordPress-Coding-Standards/issues/1143 -->
+	<rule ref="PEAR.Files.IncludingFile.BracketsNotRequired">
+		<type>warning</type>
+	</rule>
+	<rule ref="PEAR.Files.IncludingFile.UseRequire">
+		<type>warning</type>
+	</rule>
+	<rule ref="PEAR.Files.IncludingFile.UseRequireOnce">
+		<type>warning</type>
+	</rule>
+
+	<!-- Check correct spacing of language constructs. This also ensures that the
+	     above rule for not using brackets with require is fixed correctly.
+		 https://github.com/WordPress/WordPress-Coding-Standards/issues/1153 -->
+	<rule ref="Generic.WhiteSpace.LanguageConstructSpacing"/>
+
+    <!-- CUSTOM  -->
+
+	<rule ref="PSR1.Classes.ClassDeclaration" />
+	<rule ref="PSR1.Files.SideEffects">
+		<exclude-pattern>
+			*/artisan
+		</exclude-pattern>
+	</rule>
+
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+        <exclude-pattern>./database/factories/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR2">
+		<exclude name="PSR2.Classes.ClassDeclaration.InterfaceWrongIndent" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.BodyOnNextLineCASE" />
+		<exclude name="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket" />
+		<exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket" />
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent" />
+        <exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose" />
+        <!-- Highlights spaces in if control statement  -->
+        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace" />
+        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace" />
+		<properties>
+			<property name="lineLimit" value="130" />
+		</properties>
+	</rule>
+
+    <rule ref="PSR12.Keywords.ShortFormTypeKeywords" />
+
+    <rule ref="PEAR.Functions.FunctionCallSignature">
+        <properties>
+            <property name="requiredSpacesAfterOpen" value="1" />
+            <property name="requiredSpacesBeforeClose" value="1" />
+            <property name="allowMultipleArguments" value="true" />
+        </properties>
+    </rule>
+    <rule ref="Zend.Files.ClosingTag" />
+    <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>
+</ruleset>
+

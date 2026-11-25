@@ -132,6 +132,16 @@ lando php artisan user:update-password user@example.com
 
 GitHub Actions validates the Composer configuration, installs the PHP and npm dependencies, builds the frontend, migrates an SQLite database, and runs the Laravel test suite on pushes and pull requests targeting `main`.
 
+### Coding standards
+
+Run these commands from the application directory after installing dependencies:
+
+| Command | Purpose |
+| --- | --- |
+| `npm run sniff` | Check the code with PHP_CodeSniffer. |
+| `npm run fix` | Automatically fix coding standard violations where possible. |
+| `npm run analyse` | Run static analysis with PHPStan. |
+
 ## Contributing
 
 Issues and pull requests are welcome in the [WireJets GitHub repository](https://github.com/valentinechong/wirejets).

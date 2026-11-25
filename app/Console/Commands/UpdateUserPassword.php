@@ -19,52 +19,57 @@ class UpdateUserPassword extends Command
 
     public function handle(): int
     {
-        if (! Features::enabled(Features::updatePasswords())) {
-            $this->error('Password updates are disabled in the Fortify configuration.');
+        if (! Features::enabled( Features::updatePasswords() )) {
+            $this->error( 'Password updates are disabled in the Fortify configuration.' );
 
             return self::FAILURE;
         }
 
-        $user = User::query()->where('email', $this->argument('email'))->first();
+        $user = User::query()->where( 'email', $this->argument( 'email' ) )->first();
 
         if (! $user) {
-            $this->error('No user was found with that email address.');
+            $this->error( 'No user was found with that email address.' );
 
             return self::FAILURE;
         }
 
-        $password = $this->secret('New password');
+        $password = $this->secret( 'New password' );
 
         if ($password === null) {
-            $this->error('No password was provided.');
+            $this->error( 'No password was provided.' );
 
             return self::FAILURE;
         }
 
-        if (! $this->option('force')) {
+        if (! $this->option( 'force' )) {
             $input = [
                 'password' => $password,
-                'password_confirmation' => $this->secret('Confirm new password'),
+                'password_confirmation' => $this->secret( 'Confirm new password' ),
             ];
 
-            $validator = Validator::make($input, [
+            $validator = Validator::make(
+                $input,
+                [
                 'password' => $this->passwordRules(),
-            ]);
+                ]
+            );
 
             if ($validator->fails()) {
                 foreach ($validator->errors()->all() as $message) {
-                    $this->error($message);
+                    $this->error( $message );
                 }
 
                 return self::FAILURE;
             }
         }
 
-        $user->forceFill([
-            'password' => Hash::make($password),
-        ])->save();
+        $user->forceFill(
+            [
+            'password' => Hash::make( $password ),
+            ]
+        )->save();
 
-        $this->info("Password updated for {$user->email}.");
+        $this->info( "Password updated for {$user->email}." );
 
         return self::SUCCESS;
     }

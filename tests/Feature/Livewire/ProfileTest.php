@@ -16,19 +16,22 @@ class ProfileTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->actingAs($user);
+        $this->actingAs( $user );
 
-        Livewire::test(UpdateProfileInformationForm::class)
-            ->set('state.name', 'Updated Name')
-            ->set('state.email', 'updated@example.com')
-            ->call('updateProfileInformation')
+        Livewire::test( UpdateProfileInformationForm::class )
+            ->set( 'state.name', 'Updated Name' )
+            ->set( 'state.email', 'updated@example.com' )
+            ->call( 'updateProfileInformation' )
             ->assertHasNoErrors()
-            ->assertDispatched('saved');
+            ->assertDispatched( 'saved' );
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas(
+            'users',
+            [
             'id' => $user->id,
             'name' => 'Updated Name',
             'email' => 'updated@example.com',
-        ]);
+            ]
+        );
     }
 }

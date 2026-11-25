@@ -4,7 +4,10 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "sniff": "php vendor/bin/phpcs --report-full -s -p -n --report-summary --runtime-set ignore_warnings_on_exit true",
+        "fix": "php vendor/bin/phpcbf --report-full -s -n --report-summary",
+        "analyse": "php vendor/bin/phpstan analyse"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.7",

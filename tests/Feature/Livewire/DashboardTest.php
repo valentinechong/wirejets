@@ -12,9 +12,9 @@ class DashboardTest extends TestCase
 
     public function test_authenticated_users_can_view_the_dashboard(): void
     {
-        $this->actingAs(User::factory()->create())
-            ->get('/dashboard')
+        $this->actingAs( User::factory()->create() )
+            ->get( '/dashboard' )
             ->assertOk()
-            ->assertSee('Dashboard');
+            ->assertSee( 'Dashboard' );
     }
 }

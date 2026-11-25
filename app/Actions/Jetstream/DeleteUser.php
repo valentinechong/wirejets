@@ -9,8 +9,10 @@ class DeleteUser implements DeletesUsers
 {
     /**
      * Delete the given user.
+     *
+     * @param  \App\Models\User $user
      */
-    public function delete(User $user): void
+    public function delete( User $user ): void
     {
         $user->deleteProfilePhoto();
         $user->tokens->each->delete();

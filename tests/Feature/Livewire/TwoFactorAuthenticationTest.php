@@ -16,14 +16,14 @@ class TwoFactorAuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->actingAs($user);
-        $this->withSession(['auth.password_confirmed_at' => time()]);
+        $this->actingAs( $user );
+        $this->withSession( ['auth.password_confirmed_at' => time()] );
 
-        Livewire::test(TwoFactorAuthenticationForm::class)
-            ->call('enableTwoFactorAuthentication')
+        Livewire::test( TwoFactorAuthenticationForm::class )
+            ->call( 'enableTwoFactorAuthentication' )
             ->assertHasNoErrors();
 
-        $this->assertNotNull($user->fresh()->two_factor_secret);
-        $this->assertCount(8, $user->fresh()->recoveryCodes());
+        $this->assertNotNull( $user->fresh()->two_factor_secret );
+        $this->assertCount( 8, $user->fresh()->recoveryCodes() );
     }
 }
